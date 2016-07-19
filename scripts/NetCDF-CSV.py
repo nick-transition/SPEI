@@ -58,7 +58,7 @@ i=0
 header = ['Index','Latitude', 'Longitude']
 with open('SPEI-test-time.csv', 'wb') as csvFile:
     outputwriter = csv.writer(csvFile, delimiter=',')
-    for time_index, time in enumerate(times[1067:1103]): #set to 1067: for 1990 to latest available
+    for time_index, time in enumerate(times[1067:]): #set to 1067: for 1990 to latest available
          t = num2date(time, units = units, calendar='365_day')
          header.append(t)
     outputwriter.writerow(header)
