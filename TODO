@@ -1,0 +1,11 @@
+
+Active:
+- Group Columns by year
+- Return list1
+
+Next:
+- Drop lat-lon with list of years
+- Groupby months and create seasonal average
+
+Final Run:
+-Create new SPEI output file with time object

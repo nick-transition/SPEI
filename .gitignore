@@ -1,0 +1,7 @@
+.DS_Store
+*.nc
+*.csv
+scripts/.ipynb_checkpoints
+.vagrant
+scripts/__pycache__
+Vagrantfile

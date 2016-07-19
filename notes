@@ -1,0 +1,16 @@
+The array should look like:
+
+
+Lat,Lon,Year,Kharif->Summer,Rhabi->Winter
+Lat,Lon,Year+1,Kharif->Summer,Rhabi->Winter
+........
+
+# Data lives here
+#tits = pd.DataFrame(df.ix[2000:2005])
+
+
+Month dictionaries:
+  Kharif: June(6)-October(10)
+    kmon = [6,7,8,9,10]
+  Rabi: November(11)-March(3)
+    rmon = [1,2,3,11,12]
