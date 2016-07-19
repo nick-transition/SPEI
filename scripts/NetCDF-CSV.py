@@ -54,8 +54,8 @@ vname = 'spei'
 
 var = nc.variables[vname]
 
-
-header = ['Latitude', 'Longitude']
+i=0
+header = ['Index','Latitude', 'Longitude']
 with open('SPEI-test-time.csv', 'wb') as csvFile:
     outputwriter = csv.writer(csvFile, delimiter=',')
     for time_index, time in enumerate(times[1067:1103]): #set to 1067: for 1990 to latest available
@@ -66,8 +66,10 @@ with open('SPEI-test-time.csv', 'wb') as csvFile:
     for lat_index, lat in enumerate(lati):
         for lon_index, lon in enumerate(loni):
             print(lat,"-",lon)
+
             istart = netCDF4.date2index(start,time_var,select='nearest')
             data = var[istart:istop,near(lats,lat),near(lons,lon)]
             dstring = fixline(data.tolist())
-            content = [lat,lon]+data.tolist()
+            content = [i,lat,lon]+data.tolist()
             outputwriter.writerow(content)
+            i +=1
