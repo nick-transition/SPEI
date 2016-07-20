@@ -47,6 +47,8 @@ stop = dt.datetime(1994,1,1,0,0,0)
 # these don't matter...need to use different indexing method on the DataFrame
 istart = netCDF4.date2index(start,time_var,select='nearest')
 istop = netCDF4.date2index(stop,time_var,select='nearest')
+
+print istart,istop
 #print(istart,istop)
 
 # Get all time records of variable [vname] at indices [iy,ix]
@@ -68,7 +70,7 @@ with open('SPEI-test-time.csv', 'wb') as csvFile:
             print(lat,"-",lon)
 
             istart = netCDF4.date2index(start,time_var,select='nearest')
-            data = var[istart:istop,near(lats,lat),near(lons,lon)]
+            data = var[istart:,near(lats,lat),near(lons,lon)]
             dstring = fixline(data.tolist())
             content = [i,lat,lon]+data.tolist()
             outputwriter.writerow(content)
