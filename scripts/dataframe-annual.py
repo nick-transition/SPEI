@@ -12,7 +12,7 @@ def getAverages(values):
     numYrs = (len(values)/12)-1
     #print values[5],values[17],values[29]
     values = map(lambda v: 0 if v=='' else float(v),values)
-    for i in range(1,len(years)):
+    for i in range(1,len(years)+1):
         # Get SPEI average for kharif season June(6)-October(10)
         k = (i*12)
         kharif = values[k:(k+12)]
@@ -24,14 +24,15 @@ def getAverages(values):
     return kaverages
 
 with open('SPEI-test-time.csv', 'rb') as csvfile:
-    with open('SPEI-annual-avg.csv','wb') as f:
+    with open('SPEI-annual-avg-98-2010.csv','wb') as f:
         writer = csv.writer(f,delimiter=',')
         reader = csv.reader(csvfile, delimiter=',')
         header=['Latitude','Longitude','Year','Annual Average']
         writer.writerow(header)
         for row in reader:
             if reader.line_num == 1:
-                dates = row[3:]
+                dates = row[105:261]
+                print dates
                 headYears = map(lambda d:int(d.split('-')[0]),dates)
                 headMonths = map(lambda d:int(d.split('-')[1]),dates)
                 years = sorted(list(set(headYears)))
@@ -39,6 +40,6 @@ with open('SPEI-test-time.csv', 'rb') as csvfile:
             if reader.line_num >1:
                 lats.append(float(row[1]))
                 lons.append(float(row[2]))
-                averages = getAverages(row[3:])
-                for i in range(len(years)-1):
+                averages = getAverages(row[99:255])
+                for i in range(len(years)):
                     writer.writerow([row[1],row[2],years[i],averages[i]])
